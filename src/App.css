@@ -1,38 +1,400 @@
-.App {
-  text-align: center;
+body
+{
+    background-color: #f5f0ed;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.link{
+    color: white;
+    text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header
+{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header_logo
+{
+    width: 100px;
+    object-fit: contain ;
+    margin: 0  20px;
+    margin-top: 18px;
 }
 
-.App-link {
-  color: #61dafb;
+.header_search
+{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    border-radius: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header_searchInput
+{
+    height: 17px;
+    padding: 4px;
+    border: none;
+    width: 100%;
+}
+
+.header_searchIcon
+{
+    padding: 2px;
+    height: 22px !important;
+    background-color: #cd9042;
+}
+
+.header_nav
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header_option
+{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header_option_line1
+{
+    font-size: 10px;
+}
+
+.header_option_line2
+{
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.header_optionBasket
+{
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.header_basketcount
+{
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.basket_link
+{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.home
+{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1500px;
+}
+
+.home_row
+{
+    display: flex;
+    z-index: 1;
+    margin-left: 5px; 
+    margin-right: 5px;
+}
+
+.home_img
+{
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -250px;
+    mask-image: linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+}
+
+
+.product
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    max-height: 400px;
+    min-width: 100px;
+    background-color: rgb(255, 255, 255);
+    /* z-index: -1; */
+}
+
+.product_info
+{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.product_price
+{
+    margin-top: 5px;
+}
+
+.product_rating
+{
+    display: flex;
+}
+
+.product>img
+{
+    max-height: 200px;
+    width: 100%;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.product > button
+{
+    background-color: #f0b972;
+    border: 2px solid ;
+    margin-top: 5px;
+    border-color: #d49c52;
+    color: black;
+    cursor: pointer;
+}
+
+
+.checkout
+{           
+    margin: auto;
+    display: flex;
+    padding: 20px;
+    background-color: white;
+    height: max-content;
+    max-width: 1500px;
+}
+
+.checkout_ad
+{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.checkout_title
+{
+    padding: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.checkout_right
+{
+    margin-left: 10px;
+}
+
+
+.subtotal
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 100px;
+    padding: 20px;
+    background-color: #f3f3f3;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+}
+
+.subtotal_gift
+{
+    display: flex;
+    align-items: center;
+}
+
+.subtotal_gift > input
+{
+    margin-right: 5px;
+}
+
+.subtotal > button
+{
+    background-color: #f0c14b;
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+}
+
+
+.checkoutProduct
+{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.checkoutProduct_image
+{
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}
+
+.checkoutProduct_info
+{
+    padding-left: 10px;
+}   
+
+.checkoutProduct_title
+{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.checkoutProduct_rating
+{
+    display: flex;
+}
+
+.checkoutProduct_info > button
+{
+    background-color: #f0b972;
+    border: 2px solid ;
+    margin-top: 5px;
+    border-color: #d49c52;
+    color: black;
+    cursor: pointer;
+}
+
+
+.login
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+
+}
+
+.login_logo
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100px;
+    object-fit: contain;
+}
+
+.login_container
+{
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 20px;
+}
+
+.login_container>h1
+{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.login_container>form>h5
+{
+    margin-bottom: 5px;
+}
+
+.login_container>form>input
+{
+    height: 25px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 98%;
+}
+
+.login_container>form>button
+{
+    background-color: #f0c14b;
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px soild;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+}
+
+.login_container>p
+{
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.login_container>button
+{
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    background-color: darkgrey;
+}
+
+
+.payment
+{
+    background-color: white;
+}
+
+.payment_container > h1
+{
+    text-align: center;
+    font-weight: 400;
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
+    background-color: rgb(234, 237, 237);
+}
+
+.payment_container>h1 a
+{
+    text-decoration: none;
+    color: black;
+}
+
+.payment_section
+{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 20px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.payment_title
+{
+    flex: 0.2;
+}
+
+.payment_address, .payment_details, .payment_items
+{
+    flex: 0.8;
 }
