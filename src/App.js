@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Checkout from "./Components/Checkout";
 import Login from "./Components/Login";
 import Payment from "./Components/Payment"
+import Orders from "./Components/Orders";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
@@ -58,6 +59,10 @@ function App() {
           <Route exact path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route exact path="/orders">
+            <Header />
+            <Orders />
           </Route>
         </Switch>
       </div>

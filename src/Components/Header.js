@@ -41,7 +41,7 @@ function Header() {
                 </div>
 
                 <div className="header_option">
-                    <Link className='link' to='login'>
+                    <Link className='link' to='orders'>
                         <div className='header_option_line1'>
                             Return
                         </div>
@@ -52,7 +52,7 @@ function Header() {
                 </div>
 
                 <div className="header_option">
-                    <Link className='link' to='login'>
+                    <Link className='link' to='/'>
                         <div className='header_option_line1'>
                             Your
                         </div>

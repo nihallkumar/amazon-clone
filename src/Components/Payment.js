@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
-import {Link , useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { getBasketTotal } from '../reducer';
 import { useStateValue } from '../StateProvider';
 import CheckoutProduct from './CheckoutProduct';
-import axios from 'axios';
+import axios from '../axios';
+import { db } from '../firebase';
 
 
 function Payment() {
@@ -15,46 +16,61 @@ function Payment() {
     const stripe = useStripe();
     const elements = useElements();
 
-    const [error, setError] = useState(null)
-    const [disabled, setDisabled] = useState(true)
     const [succeeded, setSucceeded] = useState(false)
     const [processing, setProcessing] = useState("")
-    const [clientSecrete, setClientSecrete] = useState(true)
+    const [error, setError] = useState(null)
+    const [disabled, setDisabled] = useState(true)
+    const [clientSecret, setClientSecret] = useState(true)
 
     useEffect(() => {
-        //   generate the special stripe secrete which allows us to charge a customer
-
-        const getClientScerete = async () => {
+        //   generate the special stripe secret which allows us to charge a customer
+        const getClientSceret = async () => {
             const response = await axios({
-                method: 'POST',
+                method: 'post',
                 // Stripe expects the total in a currencies subunits
                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
-            })
-            setClientSecrete(response.data.clientSecrete)
-
+            });
+            setClientSecret(response.data.clientSecret)
         }
-
-        getClientScerete();
+        getClientSceret();
     }, [basket])
 
+    console.log("the secret is >>>> ", clientSecret)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setProcessing(true);
 
-        const payload = await stripe.confirmCardPayment(clientSecrete, {
+        const payload = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then(({paymentIntent})=>{
+        }).then(({ paymentIntent }) => {
             // paymentIntent = payment confirmation
 
-        })
+            db
+                .collection('users')
+                .doc(user?.uid)
+                .collection('orders')
+                .doc(paymentIntent.id)
+                .set({
+                    basket: basket,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created
+                })
 
-        setSucceeded(true)
-        setError(null)
-        setProcessing(false)
-        history.replace('/orders')
+            setSucceeded(true)
+            setError(null)
+            setProcessing(false)
+
+            console.log("Order Placed")
+
+            // dispatch({
+            //     type: "EMPTY_BASKET",
+            // })
+
+            history.replace('/orders')
+        })
     }
 
     const handleChange = event => {
