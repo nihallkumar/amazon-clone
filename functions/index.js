@@ -10,28 +10,28 @@ const app = express();
 
 // -Middlewares
 const cors = require('cors');
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
 // app.use(cors({origin: true}));
 
 // -API Routes
-app.get('/',(request,response)=> response.status(200).send("Hello World"));
+app.get('/', (request, response) => response.status(200).send("Hello World"));
 
-app.post("/payments/create", async(request,response)=>{
+app.post("/payments/create", async (request, response) => {
     const total = request.query.total;
     console.log("payment request recieved for this amount >>>> ", total);
 
     const paymentIntent = await stripe.paymentIntents.create({
-        amount : total, 
-        currency : "INR",
+        amount: total,
+        currency: "INR",
     });
 
     response.status(201).send({
-        clientSecret : paymentIntent.client_secret,
+        clientSecret: paymentIntent.client_secret,
     });
 });
 
